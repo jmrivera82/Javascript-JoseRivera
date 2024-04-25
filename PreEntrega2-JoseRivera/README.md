@@ -20,3 +20,5 @@ Se agrega una opción nueva al simulador, contenida en la opción número 3 del 
 Se crea el objeto pizzas en el cual se asigna un id y sus respectivos ingredientes.
 
 Además se agrega el array totalIngredientes para que el usuario pueda personalizar su pizza.
+
+Se utiliza array para mostrar listado de pizzas para comprar.
