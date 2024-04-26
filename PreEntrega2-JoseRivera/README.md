@@ -25,4 +25,6 @@ Se utiliza array para mostrar listado de pizzas para comprar.
 
 Se permite al usuario poder armar su pizza de acuerdo a los ingredientes que mas prefiera y pasar al modulo de pago.
 
+Se permite al usuario ver el catalogo y pasar a pago al ver que ingredientes tiene su pizza, en el modulo de pago se habilitó la opción de anular pedido.
+
 
