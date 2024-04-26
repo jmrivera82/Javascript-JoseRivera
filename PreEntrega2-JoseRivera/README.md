@@ -23,4 +23,6 @@ Además se agrega el array totalIngredientes para que el usuario pueda personali
 
 Se utiliza array para mostrar listado de pizzas para comprar.
 
-Se permite al usuario poder armar su pizza de acuerdo a los ingredientes que mas prefiera.
+Se permite al usuario poder armar su pizza de acuerdo a los ingredientes que mas prefiera y pasar al modulo de pago.
+
+

@@ -2,7 +2,7 @@
 //Funciones
 
 function pago(precio){
-    let mediodepago=prompt("Elige tu opción de pago: \n1 Pago efectivo \n2 tarjeta débito \n3 crédito")
+    let mediodepago=prompt("Elige tu opción de pago: \n1 Pago efectivo \n2 Tarjeta débito \n3 Crédito\n4 Anular pedido")
     let total = 0
     switch(mediodepago){
         case "1":
@@ -54,7 +54,11 @@ function pago(precio){
                 despedida()
                 break
             }            
-            break            
+            break  
+        
+        case "4":
+            salir()
+            break
     }
 } 
 
@@ -102,23 +106,44 @@ function catalogo(){
     switch (opc) {
         case 1:
             const res1 = pizzas.find(pizza => pizza.id===1)
-            alert("Los ingredientes de esta pizza son: \n" + res1.ingredientes.join(" - "))
+
+            precio=7990
+            alert("Los ingredientes de esta pizza son: \n" + res1.ingredientes.join(" - ") + "\nSu precio es de: "+precio)
+            pago(precio)
             break
+
         case 2:
             const res2 = pizzas.find(pizza => pizza.id===2)
-            alert("Los ingredientes de esta pizza son: \n" + res2.ingredientes.join(" - "))            
+
+            precio=8990
+            alert("Los ingredientes de esta pizza son: \n" + res2.ingredientes.join(" - ")+ "\nSu precio es de: "+precio) 
+            pago(precio)
+           
             break
         case 3:
             const res3 = pizzas.find(pizza => pizza.id===3)
-            alert("Los ingredientes de esta pizza son: \n" + res3.ingredientes.join(" - "))            
+
+            precio=9990
+            alert("Los ingredientes de esta pizza son: \n" + res3.ingredientes.join(" - ")+ "\nSu precio es de: "+precio)    
+            pago(precio)
+        
             break
         case 4:
             const res4 = pizzas.find(pizza => pizza.id===4)
-            alert("Los ingredientes de esta pizza son: \n" + res4.ingredientes.join(" - "))            
+
+            precio=10990
+            alert("Los ingredientes de esta pizza son: \n" + res4.ingredientes.join(" - ")+ "\nSu precio es de: "+precio)    
+            pago(precio)
+        
             break
         case 5:
+
             const res5 = pizzas.find(pizza => pizza.id===5)
-            alert("Los ingredientes de esta pizza son: \n" + res5.ingredientes.join(" - "))            
+
+            precio=11990
+            alert("Los ingredientes de esta pizza son: \n" + res5.ingredientes.join(" - ")+ "\nSu precio es de: "+precio)   
+            pago(precio)
+        
             break
 
         case 6:
@@ -142,15 +167,33 @@ function pizzaPersonalizada(){ //La idea es que el usuario escoja varios ingredi
 
             seleccion=Number(prompt(listado))
 
-            const eleccion = totalIngredientes.find(ingrediente => ingrediente.id===seleccion)
+            const eleccion = totalIngredientes.find(ingrediente => ingrediente.id === seleccion)
 
-            ingredientesSeleccionados=ingredientesSeleccionados.concat(seleccion)
+            ingredientesSeleccionados.push(eleccion.nombre)
 
-            alert(ingredientesSeleccionados)
 
         }while (confirm("Deseas agregar otro ingrediente"))
     
+        alert("Estos son tus ingredientes: " + ingredientesSeleccionados.join(", "))
 
+        const cantidadIngredientes = ingredientesSeleccionados.length
+
+        const numIngredientes = totalIngredientes.length
+        
+        if (cantidadIngredientes >0 && cantidadIngredientes <=4){
+            
+            let precio = 10990
+            alert("el valor de la pizza es de: "+ precio)
+            pago(precio)
+        } else if (cantidadIngredientes >4 && cantidadIngredientes <=8 ){
+            let precio = 15990
+            alert("el valor de la pizza es de: "+ precio)
+            pago(precio)
+        } else if (cantidadIngredientes >=8 && cantidadIngredientes < numIngredientes ){
+            let precio = 19990
+            alert("el valor de la pizza es de: "+ precio)
+            pago(precio)
+        } 
 }
 
 //OBJETOS Y ARRAYS
