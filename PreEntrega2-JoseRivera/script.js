@@ -122,7 +122,8 @@ function catalogo(){
             break
 
         case 6:
-            alert("Los ingredientes de esta pizza los eliges tú: \n")            
+            alert("Los ingredientes de esta pizza los eliges tú \n") 
+            pizzaPersonalizada()           
             break     
     }
 }
@@ -148,15 +149,7 @@ function pizzaPersonalizada(){ //La idea es que el usuario escoja varios ingredi
             alert(ingredientesSeleccionados)
 
         }while (confirm("Deseas agregar otro ingrediente"))
-        
-  
-
-   
-  
-
-
-
-
+    
 
 }
 

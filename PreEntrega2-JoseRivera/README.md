@@ -13,12 +13,14 @@ Dentro de cada opción se puede escoger 3 tipos de productos y una vez realizada
 
 Se tienen en cuenta descuentos dependiendo del medio de pago, o bien cobros extras si pagas con crédito.
 
-PreEntrega N°2
+PreEntrega N°2 - Estructura, variables y objetos
 
-Se agrega una opción nueva al simulador, contenida en la opción número 3 del menú "Revisar Catálogo".
+Revisar opción 3 del menú principal, "Revisar Catálogo".
 
 Se crea el objeto pizzas en el cual se asigna un id y sus respectivos ingredientes.
 
 Además se agrega el array totalIngredientes para que el usuario pueda personalizar su pizza.
 
 Se utiliza array para mostrar listado de pizzas para comprar.
+
+Se permite al usuario poder armar su pizza de acuerdo a los ingredientes que mas prefiera.
