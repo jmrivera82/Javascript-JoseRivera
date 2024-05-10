@@ -250,20 +250,6 @@ const totalIngredientes = [{id:1, nombre:"Queso Mozarella"},
                             {id:14, nombre:"Espinaca"},
                             {id:15, nombre:"Cebolla"}]
 
-//Array agregado para PreEntrega3
-
-const productoPromociones = [{id:1, nombre:"Pizza 4 Quesos", valor:9990},
-                             {id:2, nombre:"Pizza Napolitana",valor:9990},
-                             {id:3, nombre:"Pizza finas hierbas",valor:10990},
-                             {id:4, nombre:"Pizza española",valor:10990},
-                             {id:5, nombre:"Pizza especial Cata", valor:10990},
-                             {id:6, nombre:"Papas Fritas chica", valor:3000},
-                             {id:7, nombre:"Papas Fritas grande",valor:5000},
-                             {id:8, nombre:"Bebida personal",valor:2000},
-                             {id:9, nombre:"Bebida 2lts",valor:3500},
-                             {id:10, nombre:"Nuggets",valor:4990},
-                             {id:11, nombre:"Empanadas queso",valor:5000},
-                             {id:12, nombre:"Jugo",valor:1500}] 
 
 /*Clase 10*/
 //ACTIVIDAD N° 3
@@ -305,6 +291,32 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function promociones(){
 
+    /*prueba utilizando array para no usar prompt*/
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const productoPromociones = [{id:1, nombre:"Pizza 4 Quesos", valor:9990},
+                             {id:2, nombre:"Pizza Napolitana",valor:9990},
+                             {id:3, nombre:"Pizza finas hierbas",valor:10990},
+                             {id:4, nombre:"Pizza española",valor:10990},
+                             {id:5, nombre:"Pizza especial Cata", valor:10990},
+                             {id:6, nombre:"Papas Fritas chica", valor:3000},
+                             {id:7, nombre:"Papas Fritas grande",valor:5000},
+                             {id:8, nombre:"Bebida personal",valor:2000},
+                             {id:9, nombre:"Bebida 2lts",valor:3500},
+                             {id:10, nombre:"Nuggets",valor:4990},
+                             {id:11, nombre:"Empanadas queso",valor:5000},
+                             {id:12, nombre:"Jugo",valor:1500}] 
+        
+        const listadoPromociones = document.getElementById("listaPromociones")
+            productoPromociones.forEach(function(productoPromo) {
+            const nuevaPromo = document.createElement("li")
+            nuevaPromo.textContent = "N°"+productoPromo.id  +" " + productoPromo.nombre +" " + "$"+ productoPromo.valor
+            listadoPromociones.appendChild(nuevaPromo)
+        });
+    });
+
+    /*agrego los productos al dom mediante prompt*/
+
     document.addEventListener("DOMContentLoaded", function() {
         const listaPromos = document.getElementById("listaPromos")
         const btnAgregarProducto = document.getElementById("agregaProducto")
@@ -313,7 +325,7 @@ function promociones(){
         const btnVerPago = document.getElementById("verPago")
 
         
-        // Recuperando los datos almacenados en localStorage y convertir json a un array
+        // Storage y array
         const productosAlmacenados = localStorage.getItem("productos")
         if (productosAlmacenados) {
 

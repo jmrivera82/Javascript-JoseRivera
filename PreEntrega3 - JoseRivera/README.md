@@ -40,6 +40,7 @@ Utilizar los botones agregar producto y calcula precio para modificar el DOM
 
 Finalmente utilizar ir a pago para obtener el total de acuerdo a las opciones de pago definidas en las preentregas anteriores. Para ello se modificó la función pago.
 
-Se modifica funcion "despedida" para cerrar compra cliente
+Se modifica funcion "despedida" para cerrar compra cliente 
 
 El botón nueva boleta limpia el DOM para ingresar un registro nuevo
+
