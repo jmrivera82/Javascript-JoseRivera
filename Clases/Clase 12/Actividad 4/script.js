@@ -257,6 +257,98 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 })
 
+//Clase 12 Actividad 4
+
+function promociones(){
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const listaPromos = document.getElementById("listaPromos")
+        const btnAgregarProducto = document.getElementById("agregaProducto")
+        const btnCalcularPrecio = document.getElementById("calculaPrecio")
+        const mensajePrecio = document.getElementById("totalPago")
+    
+        btnAgregarProducto.addEventListener("click", function() {
+            const nuevoProducto = prompt("Ingrese un producto:")
+            const precioProducto = parseFloat(prompt("Ingrese el precio del producto:"))
+            console.log("Nuevo producto ingresado:", nuevoProducto)
+            console.log("Precio del producto ingresado:", precioProducto)
+            if (nuevoProducto && precioProducto) {
+                agregarProductoALaLista(nuevoProducto, precioProducto)
+                alert("Producto agregado: " + nuevoProducto)
+            }
+        })
+    
+        btnCalcularPrecio.addEventListener("click", function() {
+            calcularPrecioDeLaPromocion()
+        })
+    
+        function agregarProductoALaLista(nombre, precio) {
+            console.log("Agregando producto a la lista:", nombre, precio)
+            const nuevoElemento = document.createElement("li")
+            nuevoElemento.textContent = nombre + " - $" + precio
+            listaPromos.appendChild(nuevoElemento)
+        }
+    
+        function calcularPrecioDeLaPromocion() {
+            console.log("Calculando precio de la promoción")
+            // Lógica para calcular el precio de la promoción
+            // Se debe implementar según tus necesidades
+            let precioTotal = 0
+            const productos = listaPromos.querySelectorAll("li")
+            productos.forEach(function(producto) {
+                const precio = parseFloat(producto.textContent.split(" - $")[1])
+                precioTotal += precio
+            })
+
+            console.log("El precio de la promoción es: $" + precioTotal)
+
+            mensajePrecio.textContent = "El precio de la promoción es: $" + precioTotal
+
+            //alert("El precio total es: " + precioTotal) 
+        }
+    })
+}
+
+/*
+
+    numpromo=Number(prompt("Elige tu promo favorita: \nOpcion 1: 2 Pizzas Napolitanas + papas fritas \nOpcion 2: 2 Pizzas 4 quesos + porción de nuggets \nOpcion 3: 2 pizzas 4 quesos + papas y nuggets"))
+    if (numpromo ===1){
+        precio=18990
+        pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+        if (pagar==="OK"){
+            pago(precio)
+            
+        }else{
+            cancelado()
+            
+        }
+    } else if (numpromo ===2){
+        precio=19990
+        pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+        if (pagar==="OK"){
+            pago(precio)
+            
+        }else{
+            cancelado()
+            
+        }
+    } else if (numpromo ===3){
+        precio=21990
+        pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+        if (pagar==="OK"){
+            pago(precio)
+            
+        }else{
+            cancelado()
+        }
+    } else {
+         alert("Opcion no válida, para continuar, presione enter") 
+         salir()
+    }
+}
+
+*/
+
 //PROGRAMA
 
 alert("Bienvenido a Pizza's Cata, estos son nuestros productos")
@@ -330,42 +422,8 @@ switch (opcion){
              menuprincipal()
         }
     case 2:
-        numpromo=Number(prompt("Elige tu promo favorita: \nOpcion 1: 2 Pizzas Napolitanas + papas fritas \nOpcion 2: 2 Pizzas 4 quesos + porción de nuggets \nOpcion 3: 2 pizzas 4 quesos + papas y nuggets"))
-        if (numpromo ===1){
-            precio=18990
-            pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
-            if (pagar==="OK"){
-                pago(precio)
-                break
-            }else{
-                cancelado()
-                break
-            }
-        } else if (numpromo ===2){
-            precio=19990
-            pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
-            if (pagar==="OK"){
-                pago(precio)
-                break
-            }else{
-                cancelado()
-                break
-            }
-        } else if (numpromo ===3){
-            precio=21990
-            pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
-            if (pagar==="OK"){
-                pago(precio)
-                break
-            }else{
-                cancelado()
-                break
-            }
-        } else {
-             alert("Opcion no válida, para continuar, presione enter") 
-             salir()
-             break
-        }
+        promociones()
+        break
     case 3: //Nuevo Catálogo
         catalogo()
         break
