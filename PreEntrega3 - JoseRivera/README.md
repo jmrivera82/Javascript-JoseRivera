@@ -33,3 +33,13 @@ PreEntrega N°3 - Optimización del proyecto
 Revisar opción 2 del menú principal "Promociones"
 
 Se puede ingresar tu nombre y personalizar el pedido
+
+Se permite ingresar pedido por prompt y su respectivo precio (quisiera ver la forma de hacerlo a través de array para que esté todo definido)
+
+Utilizar los botones agregar producto y calcula precio para modificar el DOM
+
+Finalmente utilizar ir a pago para obtener el total de acuerdo a las opciones de pago definidas en las preentregas anteriores. Para ello se modificó la función pago.
+
+Se modifica funcion "despedida" para cerrar compra cliente
+
+El botón nueva boleta limpia el DOM para ingresar un registro nuevo

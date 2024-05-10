@@ -17,8 +17,7 @@ function pago(precio){
                 break
             }
             else if (opcion ==2){
-                alert("Su cuenta es de: $" + total)
-                despedida()
+                sinbebida(total)
                 break
             }   
             break      
@@ -34,8 +33,7 @@ function pago(precio){
                 break
             }
             else if (opcion ==2){
-                alert("Su cuenta es de: $" + total)
-                despedida()
+                sinbebida(total)
                 break
             }
             break
@@ -50,8 +48,7 @@ function pago(precio){
                 break
             }
             else if (opcion ==2){
-                alert("Su cuenta es de: $" + total)
-                despedida()
+                sinbebida(total)
                 break
             }            
             break  
@@ -66,12 +63,44 @@ function agregarbebida(total){
     let totalboleta=Number(total) 
     let bebida=1500
     totalboleta=totalboleta+bebida
-    alert("Su cuenta es de: $" + totalboleta)
-    despedida()
+    //alert("Su cuenta es de: $" + totalboleta) /*cambio el alert por modificar el dom*/
+
+        const totalTotal = document.getElementById("totalFinal")
+        const nuevoElemento2 = document.createElement("li")
+        nuevoElemento2.textContent = "El total a pagar es: "+ "$" + parseInt(totalboleta,10)
+        totalTotal.appendChild(nuevoElemento2)
+
+        if (totalboleta!=""){
+            despedida()
+        }}
+
+function sinbebida(total){
+
+    let totalboleta=Number(total) 
+    //alert("Su cuenta es de: $" + totalboleta) /*cambio el alert por modificar el dom*/
+
+        const totalTotal = document.getElementById("totalFinal")
+        const nuevoElemento2 = document.createElement("li")
+        nuevoElemento2.textContent = "El total a pagar es: " + "$" + parseInt(totalboleta,10)
+        totalTotal.appendChild(nuevoElemento2)
+
+        if (totalboleta!=""){
+            despedida()
+        }
+
 }
 
+
+
 function despedida(){
-    alert ("Muchas gracias por comprar en Pizza's Cata, no olvide su boleta")
+    //alert ("Muchas gracias por comprar en Pizza's Cata, no olvide su boleta")
+    const msgDespedida = "Muchas gracias por comprar en Pizza's Cata, no olvide su boleta"
+    const contDespedida =  document.getElementById("despedida")
+    const elementoDespedida =  document.createElement("p")
+
+    elementoDespedida.textContent = msgDespedida
+    contDespedida.appendChild (elementoDespedida)
+
 }
 
 function cancelado (){
@@ -221,7 +250,20 @@ const totalIngredientes = [{id:1, nombre:"Queso Mozarella"},
                             {id:14, nombre:"Espinaca"},
                             {id:15, nombre:"Cebolla"}]
 
+//Array agregado para PreEntrega3
 
+const productoPromociones = [{id:1, nombre:"Pizza 4 Quesos", valor:9990},
+                             {id:2, nombre:"Pizza Napolitana",valor:9990},
+                             {id:3, nombre:"Pizza finas hierbas",valor:10990},
+                             {id:4, nombre:"Pizza española",valor:10990},
+                             {id:5, nombre:"Pizza especial Cata", valor:10990},
+                             {id:6, nombre:"Papas Fritas chica", valor:3000},
+                             {id:7, nombre:"Papas Fritas grande",valor:5000},
+                             {id:8, nombre:"Bebida personal",valor:2000},
+                             {id:9, nombre:"Bebida 2lts",valor:3500},
+                             {id:10, nombre:"Nuggets",valor:4990},
+                             {id:11, nombre:"Empanadas queso",valor:5000},
+                             {id:12, nombre:"Jugo",valor:1500}] 
 
 /*Clase 10*/
 //ACTIVIDAD N° 3
@@ -244,7 +286,7 @@ document.addEventListener("DOMContentLoaded", function() {
     saludoInicial.textContent = obtenerMensaje(saludosIniciales)
 })
 
-//Cambio de nombre en pantalla
+//Cambio de nombre de cliente
 
 document.addEventListener("DOMContentLoaded", function() {
     const mensajeNombre = document.getElementById("nombreCliente")
@@ -259,7 +301,7 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 //Clase 12 
-/**ACTIVIDAD N°4**/
+/**ACTIVIDAD N°4 + PRE ENTREGA**/
 
 function promociones(){
 
@@ -268,42 +310,43 @@ function promociones(){
         const btnAgregarProducto = document.getElementById("agregaProducto")
         const btnCalcularPrecio = document.getElementById("calculaPrecio")
         const mensajePrecio = document.getElementById("totalPago")
+        const btnVerPago = document.getElementById("verPago")
+
         
         // Recuperando los datos almacenados en localStorage y convertir json a un array
-        const productosAlmacenados = localStorage.getItem("productos");
+        const productosAlmacenados = localStorage.getItem("productos")
         if (productosAlmacenados) {
 
-            const productos = JSON.parse(productosAlmacenados);
+            const productos = JSON.parse(productosAlmacenados)
 
             productos.forEach(function(producto) {
-                agregarProductoALaLista(producto.nombre, producto.precio);
-            });
+                agregarProducto(producto.nombre, producto.precio)
+            })
         }
 
             btnAgregarProducto.addEventListener("click", function() {
+            
             const nuevoProducto = prompt("Ingrese un producto:")
             const precioProducto = parseFloat(prompt("Ingrese el precio del producto:"))
             console.log("Nuevo producto ingresado:", nuevoProducto)
             console.log("Precio del producto ingresado:", precioProducto)
             if (nuevoProducto && precioProducto) {
-                agregarProductoALaLista(nuevoProducto, precioProducto)
+                agregarProducto(nuevoProducto, precioProducto)
                 guardarProductoEnStorage()
-                alert("Producto agregado: " + nuevoProducto)
             }
-        })
+            })  
     
         btnCalcularPrecio.addEventListener("click", function() {
-            calcularPrecioDeLaPromocion()
+            calculoPromocion()
         })
     
-        function agregarProductoALaLista(nombre, precio) {
-            console.log("Agregando producto a la lista:", nombre, precio)
+        function agregarProducto(nombre, precio) {
             const nuevoElemento = document.createElement("li")
             nuevoElemento.textContent = nombre + " - $" + precio
             listaPromos.appendChild(nuevoElemento)
         }
     
-        function calcularPrecioDeLaPromocion() {
+        function calculoPromocion() {
             let precioTotal = 0
             const productos = listaPromos.querySelectorAll("li")
             productos.forEach(function(producto) {
@@ -315,10 +358,40 @@ function promociones(){
 
             mensajePrecio.textContent = "El precio de la promoción es: $" + precioTotal
 
+
+                btnVerPago.addEventListener("click", function() {
+                    precio = precioTotal
+                    pago(precio)
+                })
+
         }
         
+        function guardarProductoEnStorage() {
+            const productosIngresados = [];
+            const productosEnLista = listaPromos.querySelectorAll("li");
+            productosEnLista.forEach(function(item) {
+                const nombre = item.textContent.split(" - $")[0];
+                const precio = parseFloat(item.textContent.split(" - $")[1]);
+                productosIngresados.push({ nombre: nombre, precio: precio });
+            });
+            // Convertir los productos a formato JSON y guardarlos en localStorage
+            localStorage.setItem("productos", JSON.stringify(productosIngresados));
+        }
 
     })
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const btnLimpiar = document.getElementById("limpiar");
+    
+    btnLimpiar.addEventListener("click", function() {
+        limpiaDOM();
+    });
+});
+
+function limpiaDOM() {
+    const contenedor = document.getElementById("listaPromos");
+    contenedor.textContent = "";
 }
 
 /*
