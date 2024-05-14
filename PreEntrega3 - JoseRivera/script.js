@@ -379,72 +379,33 @@ function promociones(){
         }
         
         function guardarProductoEnStorage() {
-            const productosIngresados = [];
-            const productosEnLista = listaPromos.querySelectorAll("li");
+            const productosIngresados = []
+            const productosEnLista = listaPromos.querySelectorAll("li")
             productosEnLista.forEach(function(item) {
-                const nombre = item.textContent.split(" - $")[0];
-                const precio = parseFloat(item.textContent.split(" - $")[1]);
-                productosIngresados.push({ nombre: nombre, precio: precio });
-            });
+                const nombre = item.textContent.split(" - $")[0]
+                const precio = parseFloat(item.textContent.split(" - $")[1])
+                productosIngresados.push({ nombre: nombre, precio: precio })
+            })
             // Convertir los productos a formato JSON y guardarlos en localStorage
-            localStorage.setItem("productos", JSON.stringify(productosIngresados));
+            localStorage.setItem("productos", JSON.stringify(productosIngresados))
         }
 
     })
 }
 
 document.addEventListener("DOMContentLoaded", function() {
-    const btnLimpiar = document.getElementById("limpiar");
+    const btnLimpiar = document.getElementById("limpiar")
     
     btnLimpiar.addEventListener("click", function() {
-        limpiaDOM();
+        limpiaDOM()
     });
 });
 
 function limpiaDOM() {
-    const contenedor = document.getElementById("listaPromos");
-    contenedor.textContent = "";
+    const contenedor = document.getElementById("listaPromos")
+    contenedor.textContent = ""
 }
 
-/*
-
-    numpromo=Number(prompt("Elige tu promo favorita: \nOpcion 1: 2 Pizzas Napolitanas + papas fritas \nOpcion 2: 2 Pizzas 4 quesos + porción de nuggets \nOpcion 3: 2 pizzas 4 quesos + papas y nuggets"))
-    if (numpromo ===1){
-        precio=18990
-        pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
-        if (pagar==="OK"){
-            pago(precio)
-            
-        }else{
-            cancelado()
-            
-        }
-    } else if (numpromo ===2){
-        precio=19990
-        pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
-        if (pagar==="OK"){
-            pago(precio)
-            
-        }else{
-            cancelado()
-            
-        }
-    } else if (numpromo ===3){
-        precio=21990
-        pagar=prompt("La promo seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
-        if (pagar==="OK"){
-            pago(precio)
-            
-        }else{
-            cancelado()
-        }
-    } else {
-         alert("Opcion no válida, para continuar, presione enter") 
-         salir()
-    }
-}
-
-*/
 
 //PROGRAMA
 
