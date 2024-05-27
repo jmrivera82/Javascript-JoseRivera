@@ -1,14 +1,36 @@
 
 //Funciones
 
+function menuprincipal(){
+
+    do{
+    opcion = Number(prompt("\nQue deseas realizar\nOpcion 1 Comprar una Pizza\nOpción 2 Elige tu promo\nOpción 3 Revisar Catálogo\nOpción 4 Salir"))
+    } while (opcion !=1 && opcion !=2 && opcion !=3 && opcion !=4)
+
+}
+
 function pago(precio){
-    let mediodepago=prompt("Elige tu opción de pago: \n1 Pago efectivo \n2 Tarjeta débito \n3 Crédito\n4 Anular pedido")
+
+    let listaPago = "Elige forma de pago:\n"
+
+     opcionPago.forEach(function(opcPago) {
+         listaPago += opcPago.id + " - " + opcPago.nombre +"\n"
+     })
+
+     do{
+         opc= Number(prompt(listaPago))
+     }while (opc !=1 && opc !=2 && opc !=3 && opc !=4)
+    
     let total = 0
-    switch(mediodepago){
-        case "1":
+
+    switch(opc){
+        case 1:
             total=precio*0.9
-            Math.trunc(total) //Se buscó para obtener la parte entera del total
-            alert("Tiene un descuento del 10%, el total a pagar es: $" + total)
+            Math.trunc(total) 
+            //alert("Tiene un descuento del 10%, el total a pagar es: $" + total)
+            
+            alert ((total ? "Tiene un descuento del 10%, el total a pagar es: $" + total:"El pedido ha sido anulado"))
+
             do{
                 opcion = Number(prompt("Desea agregar una bebida??\nIngrese 1 SI\nIngrese 2 NO"))
             } while (opcion !=1 && opcion !=2)
@@ -21,7 +43,7 @@ function pago(precio){
                 break
             }   
             break      
-        case "2":
+        case 2:
             total=precio*0.95
             total=total.toFixed()
             alert("Tiene un descuento del 5%, el total a pagar es: $" + total)
@@ -37,7 +59,7 @@ function pago(precio){
                 break
             }
             break
-        case "3":
+        case 3:
             total=precio*1.20
             alert("El total a pagar considerando interes bancario es: $"+ total)
             do{
@@ -53,40 +75,52 @@ function pago(precio){
             }            
             break  
         
-        case "4":
+        case 4:
             salir()
-        
+   
     }
 } 
 
 function agregarbebida(total){
-    let totalboleta=Number(total) 
-    let bebida=1500
-    totalboleta=totalboleta+bebida
-    //alert("Su cuenta es de: $" + totalboleta) /*cambio el alert por modificar el dom*/
+
+    return new Promise ((resolve) =>{
+
+        let totalboleta=Number(total) 
+        let bebida=1500
+        totalboleta=totalboleta+bebida
+
 
         const totalTotal = document.getElementById("totalFinal")
         const nuevoElemento2 = document.createElement("li")
-        nuevoElemento2.textContent = "El total a pagar es: "+ "$" + parseInt(totalboleta,10)
+        nuevoElemento2.textContent = "El total a pagar es: $" + (totalboleta || 0)
+
+        console.log("El total a pagar es: $" + totalboleta)
+
         totalTotal.appendChild(nuevoElemento2)
 
-        if (totalboleta!=""){
-            despedida()
-        }}
+        resolve (totalboleta)
+
+    })
+
+    }
 
 function sinbebida(total){
 
+    return new Promise ((resolve) =>{
+
+
     let totalboleta=Number(total) 
-    //alert("Su cuenta es de: $" + totalboleta) /*cambio el alert por modificar el dom*/
 
         const totalTotal = document.getElementById("totalFinal")
         const nuevoElemento2 = document.createElement("li")
         nuevoElemento2.textContent = "El total a pagar es: " + "$" + parseInt(totalboleta,10)
         totalTotal.appendChild(nuevoElemento2)
 
-        if (totalboleta!=""){
-            despedida()
-        }
+        console.log("El total a pagar es: $" + totalboleta)
+
+
+        resolve (totalboleta)
+    })
 
 }
 
@@ -104,21 +138,58 @@ function despedida(){
 }
 
 function cancelado (){
-    alert("El pedido ha sido cancelado")
+
+    /*ACTIVIDAD 6 */
+
+    //Se agrega Sweet alert
+
+    document.addEventListener("DOMContentLoaded", function() {
+
+        /* funciona pero quiero agregar una confirmación
+        Swal.fire({
+        title: "Advertencia!",
+        text: "El pedido ha sido cancelado",
+        icon: "error",
+        button: "Aceptar",
+    }) */
+
+        Swal.fire({
+
+            title:"Está seguro de cancelar el pedido??",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Si, cancelar",
+            cancelButtonText: "No, no quiero"    }).then ((result) => {
+
+                if (result.isConfirmed){
+                    Swal.fire({
+
+                        title: "cancelado",
+                        icon:"success",
+                        text:"El pedido ha sido cancelado"
+                    })
+                }
+
+
+            })
+
+    })
 }
 
 function salir(){
-    alert("Que tenga buen día, vuelva pronto")
+    
+    document.addEventListener("DOMContentLoaded", function() {
+
+        Swal.fire({
+        title:"Adios!",
+        text: "Que tenga buen dia, vuelva pronto",
+        icon: "success",
+        button: "Aceptar",
+    })
+
+    })
 }
 
-
-function menuprincipal(){
-
-    do{
-    opcion = Number(prompt("\nQue deseas realizar\nOpcion 1 Comprar una Pizza\nOpción 2 Elige tu promo\nOpción 3 Revisar Catálogo\nOpción 4 Salir"))
-    } while (opcion !=1 && opcion !=2 && opcion !=3 && opcion !=4)
-
-}
 
 function catalogo(){
     
@@ -250,6 +321,10 @@ const totalIngredientes = [{id:1, nombre:"Queso Mozarella"},
                             {id:14, nombre:"Espinaca"},
                             {id:15, nombre:"Cebolla"}]
 
+const opcionPago = [{id:1,nombre:"Efectivo"},
+                    {id:2,nombre:"Debito"},
+                    {id:3,nombre:"Crédito"},
+                    {id:4,nombre:"Anular_Pedido"}]   
 
 /*Clase 10*/
 //ACTIVIDAD N° 3
@@ -285,6 +360,23 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     })
 })
+
+//Uso de luxon para que muestre fecha y la hora
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    // Usa Luxon para mostrar la fecha y hora actual
+    const DateTime = luxon.DateTime
+    const ahora = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
+
+    // Muestra la fecha y hora actual en el DOM
+    const fechaHoraElemento = document.getElementById('fechaHora')
+    fechaHoraElemento.textContent = "Fecha y hora actual: " + ahora
+})
+
+
+
+
 
 //Clase 12 
 /**ACTIVIDAD N°4 + PRE ENTREGA**/
@@ -335,6 +427,7 @@ function promociones(){
                 agregarProducto(producto.nombre, producto.precio)
             })
         }
+    
 
             btnAgregarProducto.addEventListener("click", function() {
             
@@ -435,7 +528,7 @@ switch (opcion){
             }
         } else if (numpizza ===2){
             precio=8990
-            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK, de lo contrario se cancelará el pedido")
             if (pagar==="OK"){
                 pago(precio)
                 break
@@ -445,7 +538,7 @@ switch (opcion){
             }
         } else if (numpizza ===3){
             precio=9990
-            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK, de lo contrario se cancelará el pedido")
             if (pagar==="OK"){
                 pago(precio)
                 break
@@ -455,7 +548,7 @@ switch (opcion){
             }
         } else if (numpizza ===4){
             precio=10990
-            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK, de lo contrario se cancelará el pedido")
             if (pagar==="OK"){
                 pago(precio)
                 break
@@ -465,7 +558,7 @@ switch (opcion){
             }
         } else if (numpizza ===5){
             precio=11990
-            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK")
+            pagar=prompt("La pizza seleccionada tiene un valor de $" + precio + ", para confirmar escribe OK, de lo contrario se cancelará el pedido")
             if (pagar==="OK"){
                 pago(precio)
                 break

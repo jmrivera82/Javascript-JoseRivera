@@ -1,10 +1,36 @@
 
 //Funciones
 
+function menuprincipal(){
+
+    do{
+    opcion = Number(prompt("\nQue deseas realizar\nOpcion 1 Comprar una Pizza\nOpción 2 Elige tu promo\nOpción 3 Revisar Catálogo\nOpción 4 Salir"))
+    } while (opcion !=1 && opcion !=2 && opcion !=3 && opcion !=4)
+
+}
+
+
+
+//Clase 13 Operador Ternario -- Actividad N°5 //
+
+
 function pago(precio){
-    let mediodepago=prompt("Elige tu opción de pago: \n1 Pago efectivo \n2 Tarjeta débito \n3 Crédito\n4 Anular pedido")
+
+    let listaPago = "Elige forma de pago:\n"
+
+    opcionPago.forEach(function(opcPago) {
+        listaPago += opcPago.id + " - " + opcPago.nombre +"\n"
+    })
+
+    do{
+        opc= Number(prompt(listaPago))
+    }while (opc !=1 && opc !=2 && opc !=3 && opc !=4)
+
+    
+
+  //  let mediodepago=prompt("Elige tu opción de pago: \n1 Pago efectivo \n2 Tarjeta débito \n3 Crédito\n4 Anular pedido")
     let total = 0
-    switch(mediodepago){
+    switch(opc){
         case "1":
             total=precio*0.9
             Math.trunc(total) //Se buscó para obtener la parte entera del total
@@ -59,20 +85,21 @@ function pago(precio){
     }
 } 
 
+
 function agregarbebida(total){
     let totalboleta=Number(total) 
     let bebida=1500
     totalboleta=totalboleta+bebida
-    //alert("Su cuenta es de: $" + totalboleta) /*cambio el alert por modificar el dom*/
 
         const totalTotal = document.getElementById("totalFinal")
         const nuevoElemento2 = document.createElement("li")
         nuevoElemento2.textContent = "El total a pagar es: "+ "$" + parseInt(totalboleta,10)
         totalTotal.appendChild(nuevoElemento2)
-
+       
         if (totalboleta!=""){
             despedida()
-        }}
+       }
+    }
 
 function sinbebida(total){
 
@@ -111,14 +138,6 @@ function salir(){
     alert("Que tenga buen día, vuelva pronto")
 }
 
-
-function menuprincipal(){
-
-    do{
-    opcion = Number(prompt("\nQue deseas realizar\nOpcion 1 Comprar una Pizza\nOpción 2 Elige tu promo\nOpción 3 Revisar Catálogo\nOpción 4 Salir"))
-    } while (opcion !=1 && opcion !=2 && opcion !=3 && opcion !=4)
-
-}
 
 function catalogo(){
     
@@ -249,6 +268,11 @@ const totalIngredientes = [{id:1, nombre:"Queso Mozarella"},
                             {id:13, nombre:"Tomillo"},
                             {id:14, nombre:"Espinaca"},
                             {id:15, nombre:"Cebolla"}]
+
+const opcionPago = [{id:1,nombre:"Efectivo"},
+                    {id:2,nombre:"Debito"},
+                    {id:3,nombre:"Crédito"},
+                    {id:4,nombre:"Anular_Pedido"}]    
 
 
 /*Clase 10*/
@@ -487,5 +511,5 @@ switch (opcion){
         break
     case 4:
         salir()
-    
+        break
 }
