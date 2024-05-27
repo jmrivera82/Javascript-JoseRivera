@@ -83,6 +83,8 @@ function pago(precio){
 
 function agregarbebida(total){
 
+    //Promesas
+
     return new Promise ((resolve) =>{
 
         let totalboleta=Number(total) 
@@ -363,16 +365,34 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //Uso de luxon para que muestre fecha y la hora
 
+obtenerFechaHoraActual()
+.then ((fechaHora) => {
+
+    const fechaHoraElemento = document.getElementById('fechaHora')
+    fechaHoraElemento.textContent = "Fecha y hora actual: " + fechaHora
+
+    return msjSweetAlert("Fecha y hora actual: " + fechaHora)
+
+})
+.then (() => {
+
+    console.log("Ok realizado")
+})
+.catch ((error) => {
+
+    console.error(error)
+})
+
+
+/*
 document.addEventListener("DOMContentLoaded", function() {
 
     // Usa Luxon para mostrar la fecha y hora actual
     const DateTime = luxon.DateTime
     const ahora = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
 
-    // Muestra la fecha y hora actual en el DOM
-    const fechaHoraElemento = document.getElementById('fechaHora')
-    fechaHoraElemento.textContent = "Fecha y hora actual: " + ahora
-})
+
+})  */
 
 
 
@@ -383,7 +403,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 function promociones(){
 
-    /*prueba utilizando array para no usar prompt*/
 
     document.addEventListener("DOMContentLoaded", function() {
         const productoPromociones = [{id:1, nombre:"Pizza 4 Quesos", valor:9990},

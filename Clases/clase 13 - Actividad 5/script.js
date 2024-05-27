@@ -83,6 +83,8 @@ function pago(precio){
 
 function agregarbebida(total){
 
+    //Promesas
+
     return new Promise ((resolve) =>{
 
         let totalboleta=Number(total) 
