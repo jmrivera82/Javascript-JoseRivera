@@ -1,0 +1,14 @@
+[
+    {"id": 1, "nombre": "Pizza 4 Quesos", "valor": 9990},
+    {"id": 2, "nombre": "Pizza Napolitana", "valor": 9990},
+    {"id": 3, "nombre": "Pizza Finas Hierbas", "valor": 10990},
+    {"id": 4, "nombre": "Pizza Española", "valor": 10990},
+    {"id": 5, "nombre": "Pizza Especial Cata", "valor": 10990},
+    {"id": 6, "nombre": "Papas Fritas chica", "valor": 3000},
+    {"id": 7, "nombre": "Papas Fritas grande", "valor": 5000},
+    {"id": 8, "nombre": "Bebida personal", "valor": 2000},
+    {"id": 9, "nombre": "Bebida 2lts", "valor": 3500},
+    {"id": 10, "nombre": "Nuggets", "valor": 4990},
+    {"id": 11, "nombre": "Empanadas queso", "valor": 5000},
+    {"id": 12, "nombre": "Jugo", "valor": 1500}
+]

@@ -364,37 +364,81 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 //Uso de luxon para que muestre fecha y la hora
-
-obtenerFechaHoraActual()
-.then ((fechaHora) => {
-
-    const fechaHoraElemento = document.getElementById('fechaHora')
-    fechaHoraElemento.textContent = "Fecha y hora actual: " + fechaHora
-
-    return msjSweetAlert("Fecha y hora actual: " + fechaHora)
-
-})
-.then (() => {
-
-    console.log("Ok realizado")
-})
-.catch ((error) => {
-
-    console.error(error)
-})
-
-
-/*
 document.addEventListener("DOMContentLoaded", function() {
 
-    // Usa Luxon para mostrar la fecha y hora actual
-    const DateTime = luxon.DateTime
-    const ahora = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
+    function obtenerFechaHoraActual() {
+        return new Promise((resolve, reject) => {
+            if (luxon) {
+                const DateTime = luxon.DateTime
+                const ahora = DateTime.now().toLocaleString(DateTime.DATETIME_MED)
+                resolve(ahora)
+            } else {
+                reject('Luxon no está cargado correctamente')
+            }
+        })
+    }
 
+    function msjSweetAlert(mensaje) {
+        return new Promise((resolve) => {
+            Swal.fire({
+                title: 'Información',
+                text: mensaje,
+                icon: 'info',
+                confirmButtonText: 'Aceptar'
+            }).then(() => {
+                resolve()
+            })
+        })
+    }
 
-})  */
+    obtenerFechaHoraActual()
+    .then ((fechaHora) => {
 
+        const fechaHoraElemento = document.getElementById('fechaHora')
+        fechaHoraElemento.textContent = "Fecha y hora actual: " + fechaHora
 
+        return msjSweetAlert("Fecha y hora actual: " + fechaHora)
+
+    })
+    .then (() => {
+
+        console.log("Ok se mostró la alerta por pantalla")
+    })
+    .catch ((error) => {
+
+        console.error(error)
+    })
+
+})
+
+// /* Actividad 7 Fetch*/
+
+// document.addEventListener("DOMContentLoaded", function() {
+//     // URL de la API
+//     const url = 'https://jsonplaceholder.typicode.com/users'
+
+//     // Realizar una solicitud fetch para obtener los datos de los usuarios
+//     fetch(url)
+//         .then(response => {
+//             if (!response.ok) {
+//                 throw new Error('Error en la llamada a la API')
+//             }
+//             return response.json()
+//         })
+//         .then(data => {
+//             const listaUsuarios = document.getElementById('listaUsuarios')
+
+//             // Iterar sobre los datos de los usuarios y crear elementos li para cada uno
+//             data.forEach(usuario => {
+//                 const usuarioElemento = document.createElement('li')
+//                 usuarioElemento.textContent = `${usuario.name} - ${usuario.email}`
+//                 listaUsuarios.appendChild(usuarioElemento)
+//             })
+//         })
+//         .catch(error => {
+//             console.error('Hubo un problema con la petición Fetch:', error)
+//         })
+// })
 
 
 
