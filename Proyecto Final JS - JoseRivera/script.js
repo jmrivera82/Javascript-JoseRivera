@@ -411,34 +411,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
 })
 
-// /* Actividad 7 Fetch*/
+// /* Actividad 7 Fetch pendiente de carga en promociones
 
-// document.addEventListener("DOMContentLoaded", function() {
-//     // URL de la API
-//     const url = 'https://jsonplaceholder.typicode.com/users'
 
-//     // Realizar una solicitud fetch para obtener los datos de los usuarios
-//     fetch(url)
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Error en la llamada a la API')
-//             }
-//             return response.json()
-//         })
-//         .then(data => {
-//             const listaUsuarios = document.getElementById('listaUsuarios')
-
-//             // Iterar sobre los datos de los usuarios y crear elementos li para cada uno
-//             data.forEach(usuario => {
-//                 const usuarioElemento = document.createElement('li')
-//                 usuarioElemento.textContent = `${usuario.name} - ${usuario.email}`
-//                 listaUsuarios.appendChild(usuarioElemento)
-//             })
-//         })
-//         .catch(error => {
-//             console.error('Hubo un problema con la petición Fetch:', error)
-//         })
-// })
 
 
 
